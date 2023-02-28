@@ -2,7 +2,7 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import { Text, StyleSheet } from 'react-native';
+import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 class RandomNumber extends React.Component {
     static propTypes = {
@@ -10,8 +10,9 @@ class RandomNumber extends React.Component {
     };
     render() {
       return (
-        <Text style={styles.random}>{this.props.number}</Text>
-
+        <TouchableOpacity>
+          <Text style={styles.random}>{this.props.number}</Text>
+        </TouchableOpacity>
       );
     }
 }
