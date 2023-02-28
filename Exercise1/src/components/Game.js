@@ -29,6 +29,7 @@ class Game extends React.Component {
        return this.state.selectedNumbers.indexOf(numberIndex) >= 0;
      };
     //  Arrow function to modify the state
+    // Need to update so a number can not be selected more than once
     selectNumber = (numberIndex) => {
       this.setState((prevState) => ({ 
         selectedNumbers: [...prevState.selectedNumbers, numberIndex],
@@ -46,6 +47,7 @@ class Game extends React.Component {
             // If number selected is true the button should be disabled until new page is loaded
               <RandomNumber 
                 key={index} 
+                id={index}
                 number={randomNumber} 
                 isDisabled={this.isNumberSelected(index)}
                 // Flow data here

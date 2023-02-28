@@ -6,11 +6,24 @@ import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 class RandomNumber extends React.Component {
     static propTypes = {
+      id: PropTypes.number.isRequired,
       number: PropTypes.number.isRequired,
       isDisabled: PropTypes.bool.isRequired,
+      onPress: PropTypes.func.isRequired,
+    //   Define prop types
+    // When component is pressed the new props is called
     };
     handlePress = () => {
     //   console.log(this.props.number);
+    // Need logic to prevent a number from being selected more than once
+    // If statement
+    // Use devtools debug to see what is being logged during each press
+
+      if(this.props.isDisabled) {
+        return;
+      }
+      this.props.onPress(this.props.id);
+
     // UI Logic - Once a number is pressed the button should change so it cannot be pressed again - change the state - rerender the view
     // ^ Use the unique identifier (position) - key index for every random number
     // Logic - once pressed the number should be tallied when it is equal to or greater than the target sum
