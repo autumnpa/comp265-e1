@@ -16,7 +16,8 @@ class Game extends React.Component {
 
     state = {
       // Everytime a number is pressed it will be pushed to this array
-      selectedNumbers: [],
+    //   Change name - we arent adding the numbers to array we are adding the selected Ids
+      selectedIds: [],
     };
     randomNumbers = Array.from({ length: this.props.randomNumberCount })
       .map(() => 1 + Math.floor(10 * Math.random()))
@@ -26,38 +27,50 @@ class Game extends React.Component {
      
       // Function to check if the number is the array is selected
      isNumberSelected = (numberIndex) => {
-       return this.state.selectedNumbers.indexOf(numberIndex) >= 0;
+       return this.state.selectedIds.indexOf(numberIndex) >= 0;
      };
     //  Arrow function to modify the state
     // Need to update so a number can not be selected more than once
     selectNumber = (numberIndex) => {
       this.setState((prevState) => ({ 
-        selectedNumbers: [...prevState.selectedNumbers, numberIndex],
+        selectedIds: [...prevState.selectedIds, numberIndex],
       }));
     };
 
-    render() {
-      return (
-        <View style={styles.container}>
-          <Text style={styles.target}>{this.target}</Text>
-          <View style={styles.randomContainer}>
-            {this.randomNumbers.map((randomNumber, index) => (
-              //  With every number a property is passed in (boolean) to check if a number is selected or not
-            //   Changed naming conventions to clarify logic
-            // If number selected is true the button should be disabled until new page is loaded
-              <RandomNumber 
-                key={index} 
-                id={index}
-                number={randomNumber} 
-                isDisabled={this.isNumberSelected(index)}
-                // Flow data here
-                onPress={this.selectNumber}
-              />
-            ))}
-          </View>
-        </View>
-      );
-    }
+// Game status - won - playing - lost
+// Status can be computed so doesn't need to be in the state
+gameStatus = () => {
+  const sumSelected = this.state.selectedIds.reduce((acc, curr) => {
+    return acc + this.randomNumbers[curr];
+  }, 0);
+  //   Shows right in the simulator rather than in the console of dev tools
+  //   console.log(sumSelected);
+  // console.warn(sumSelected);
+
+}
+
+render() {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.target}>{this.target}</Text>
+      <View style={styles.randomContainer}>
+        {this.randomNumbers.map((randomNumber, index) => (
+          //  With every number a property is passed in (boolean) to check if a number is selected or not
+          //   Changed naming conventions to clarify logic
+          // If number selected is true the button should be disabled until new page is loaded
+          <RandomNumber 
+            key={index} 
+            id={index}
+            number={randomNumber} 
+            isDisabled={this.isNumberSelected(index)}
+            // Flow data here
+            onPress={this.selectNumber}
+          />
+        ))}
+      </View>
+    </View>
+  );
+}
 }
 
 const styles = StyleSheet.create({
