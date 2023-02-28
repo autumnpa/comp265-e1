@@ -9,6 +9,10 @@ class Game extends React.Component {
     static propTypes = {
       randomNumberCount: PropTypes.number.isRequired,
     }
+    // UI Logic - Once a number is pressed the button should change so it cannot be pressed again - change the state - rerender the view
+    // ^ Use the unique identifier (position) - key index for every random number
+    // Logic - once pressed the number should be tallied when it is equal to or greater than the target sum
+    // Use object or array to add selected number status to a collection
     randomNumbers = Array.from({ length: this.props.randomNumberCount })
       .map(() => 1 + Math.floor(10 * Math.random()))
       target = this.randomNumbers.slice(0, this.props.randomNumberCount - 2)

@@ -9,7 +9,11 @@ class RandomNumber extends React.Component {
       number: PropTypes.number.isRequired,
     };
     handlePress = () => {
-      console.log(this.props.number);
+    //   console.log(this.props.number);
+    // UI Logic - Once a number is pressed the button should change so it cannot be pressed again - change the state - rerender the view
+    // ^ Use the unique identifier (position) - key index for every random number
+    // Logic - once pressed the number should be tallied when it is equal to or greater than the target sum
+    // Use object or array to add selected number status to a collection
     };
     render() {
       return (
