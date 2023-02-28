@@ -30,9 +30,9 @@ class Game extends React.Component {
      };
     //  Arrow function to modify the state
     selectNumber = (numberIndex) => {
-      this.setState((prevState) => {
-        return { selectedNumbers: [...prevState.selectedNumbers, numberIndex] };
-      });
+      this.setState((prevState) => ({ 
+        selectedNumbers: [...prevState.selectedNumbers, numberIndex],
+      }));
     };
 
     render() {
