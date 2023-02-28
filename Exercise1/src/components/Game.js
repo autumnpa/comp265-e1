@@ -16,7 +16,7 @@ class Game extends React.Component {
 
     state = {
       // Everytime a number is pressed it will be pushed to this array
-      selectedNumbers: [0, 4],
+      selectedNumbers: [],
     };
     randomNumbers = Array.from({ length: this.props.randomNumberCount })
       .map(() => 1 + Math.floor(10 * Math.random()))
@@ -27,25 +27,31 @@ class Game extends React.Component {
       // Function to check if the number is the array is selected
      isNumberSelected = (numberIndex) => {
        return this.state.selectedNumbers.indexOf(numberIndex) >= 0;
-     }
+     };
+    //  Arrow function to modify the state
+    selectNumber = (numberIndex) => {
+      this.setState((prevState) => {
+        return { selectedNumbers: [...prevState.selectedNumbers, numberIndex] };
+      });
+    };
 
-     render() {
-       return (
-         <View style={styles.container}>
-           <Text style={styles.target}>{this.target}</Text>
-           <View style={styles.randomContainer}>
-             {this.randomNumbers.map((randomNumber, index) => (
-             //  With every number a property is passed in (boolean) to check if a number is selected or not
-               <RandomNumber 
-                 key={index} 
-                 number={randomNumber} 
-                 isSelected={this.isNumberSelected(index)}
-               />
-             ))}
-           </View>
-         </View>
-       );
-     }
+    render() {
+      return (
+        <View style={styles.container}>
+          <Text style={styles.target}>{this.target}</Text>
+          <View style={styles.randomContainer}>
+            {this.randomNumbers.map((randomNumber, index) => (
+              //  With every number a property is passed in (boolean) to check if a number is selected or not
+              <RandomNumber 
+                key={index} 
+                number={randomNumber} 
+                isSelected={this.isNumberSelected(index)}
+              />
+            ))}
+          </View>
+        </View>
+      );
+    }
 }
 
 const styles = StyleSheet.create({
