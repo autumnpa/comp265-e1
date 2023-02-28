@@ -8,6 +8,7 @@ class Game extends React.Component {
       return (
         <View style={styles.container}>
           <Text style={styles.target}>{this.target}</Text>
+          <Text></Text>
         </View>
       );
     }
