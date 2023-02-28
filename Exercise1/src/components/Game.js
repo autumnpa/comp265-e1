@@ -47,6 +47,14 @@ gameStatus = () => {
   //   console.log(sumSelected);
   // console.warn(sumSelected);
 
+  //   If statements to determine state of the game
+  if (sumSelected < this.target) {
+    return 'PLAYING';
+  } if (sumSelected === this.target) {
+    return 'WON';
+  } if (sumSelected > this.target) {
+    return 'LOST';
+  }
 }
 
 render() {
