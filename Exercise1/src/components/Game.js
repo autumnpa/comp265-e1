@@ -11,6 +11,7 @@ class Game extends React.Component {
       .map(() => 1 + Math.floor(10 * Math.random()))
       target = this.randomNumbers.slice(0, this.props.randomNumberCount - 2)
         .reduce((acc,curr) => acc + curr, 0);
+        // TODO: Shuffle the random numbers after testing is completed
       render() {
         return (
           <View style={styles.container}>
