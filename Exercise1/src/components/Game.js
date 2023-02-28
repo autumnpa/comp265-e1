@@ -42,10 +42,14 @@ class Game extends React.Component {
           <View style={styles.randomContainer}>
             {this.randomNumbers.map((randomNumber, index) => (
               //  With every number a property is passed in (boolean) to check if a number is selected or not
+            //   Changed naming conventions to clarify logic
+            // If number selected is true the button should be disabled until new page is loaded
               <RandomNumber 
                 key={index} 
                 number={randomNumber} 
-                isSelected={this.isNumberSelected(index)}
+                isDisabled={this.isNumberSelected(index)}
+                // Flow data here
+                onPress={this.selectNumber}
               />
             ))}
           </View>

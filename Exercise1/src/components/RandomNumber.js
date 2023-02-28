@@ -7,7 +7,7 @@ import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 class RandomNumber extends React.Component {
     static propTypes = {
       number: PropTypes.number.isRequired,
-      isSelected: PropTypes.bool.isRequired,
+      isDisabled: PropTypes.bool.isRequired,
     };
     handlePress = () => {
     //   console.log(this.props.number);
@@ -21,7 +21,7 @@ class RandomNumber extends React.Component {
         // Using onpress is equivalent to using onclick event handler
         // ONLY include styles.selected IF boolean property of isSelected is true
         <TouchableOpacity onPress={this.handlePress}>
-          <Text style={[styles.random, this.props.isSelected && styles.selected]}>{this.props.number}</Text>
+          <Text style={[styles.random, this.props.isDisabled && styles.disabled]}>{this.props.number}</Text>
         </TouchableOpacity>
       );
     }
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 
-  selected: {
+  disabled: {
     opacity: 0.3,
   },
 });
