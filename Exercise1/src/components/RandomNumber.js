@@ -8,9 +8,13 @@ class RandomNumber extends React.Component {
     static propTypes = {
       number: PropTypes.number.isRequired,
     };
+    handlePress = () => {
+      console.log(this.props.number);
+    };
     render() {
       return (
-        <TouchableOpacity>
+        // Using onpress is equivalent to using onclick event handler
+        <TouchableOpacity onPress={this.handlePress}>
           <Text style={styles.random}>{this.props.number}</Text>
         </TouchableOpacity>
       );
