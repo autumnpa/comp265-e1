@@ -8,7 +8,8 @@ import RandomNumber from './RandomNumber';
 class Game extends React.Component {
     static propTypes = {
       randomNumberCount: PropTypes.number.isRequired,
-    }
+      initialSeconds: PropTypes.number.isRequired,
+    };
     // UI Logic - Once a number is pressed the button should change so it cannot be pressed again - change the state - rerender the view
     // ^ Use the unique identifier (position) - key index for every random number
     // Logic - once pressed the number should be tallied when it is equal to or greater than the target sum
@@ -18,6 +19,7 @@ class Game extends React.Component {
       // Everytime a number is pressed it will be pushed to this array
     //   Change name - we arent adding the numbers to array we are adding the selected Ids
       selectedIds: [],
+      remainingSeconds: this.props.initialSeconds,
     };
     randomNumbers = Array.from({ length: this.props.randomNumberCount })
       .map(() => 1 + Math.floor(10 * Math.random()))
