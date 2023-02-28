@@ -71,7 +71,7 @@ render() {
             key={index} 
             id={index}
             number={randomNumber} 
-            isDisabled={this.isNumberSelected(index)}
+            isDisabled={this.isNumberSelected(index) || gameStatus !== 'PLAYING'}
             // Flow data here
             onPress={this.selectNumber}
           />
