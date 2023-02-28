@@ -26,7 +26,26 @@ class Game extends React.Component {
       target = this.randomNumbers.slice(0, this.props.randomNumberCount - 2)
         .reduce((acc,curr) => acc + curr, 0);
         // TODO: Shuffle the random numbers after testing is completed
+
+      // Create a function that fires every second
+      componentDidMount() {
+        this.intervalId = setInterval(() => {
+          // Set the state
+          this.setState((prevState) => {
+            return { remainingSeconds: prevState.remainingSeconds - 1 };
+          }, () => {
+            // Set state is asynchronous - this needs to happen right after the set state operation is formed
+            if (this.state.remainingSeconds === 0) {
+              clearInterval(this.intervalId);
+            }
+          });
+        }, 1000);
+      }
      
+      componentWillUnmount() {
+        clearInterval(this.intervalId);
+      }
+
       // Function to check if the number is the array is selected
      isNumberSelected = (numberIndex) => {
        return this.state.selectedIds.indexOf(numberIndex) >= 0;
@@ -79,7 +98,7 @@ render() {
           />
         ))}
       </View>
-      <Text>{gameStatus}</Text>
+      <Text>{this.state.remainingSeconds}</Text>
     </View>
   );
 }
