@@ -8,6 +8,8 @@ class Game extends React.Component {
       randomNumberCount: PropTypes.string.isRequired,
     }
     target = 10 + Math.floor(40 * Math.random());
+    randomNumbers = Array.from({ length: this.props.randomNumberCount })
+      .map(() => 1 + Math.floor(10 * Math.random()))
     render() {
       return (
         <View style={styles.container}>
