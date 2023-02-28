@@ -35,7 +35,10 @@ class Game extends React.Component {
            <Text style={styles.target}>{this.target}</Text>
            <View style={styles.randomContainer}>
              {this.randomNumbers.map((randomNumber, index) =>
-               <RandomNumber key={index} number={randomNumber} />
+             //  With every number a property is passed in (boolean) to check if a number is selected or not
+               <RandomNumber key={index} number={randomNumber} 
+                 isSelected={this.isNumberSelected(index)}
+               />
              )}
            </View>
          </View>
