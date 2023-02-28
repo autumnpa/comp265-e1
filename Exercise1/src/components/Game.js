@@ -58,6 +58,7 @@ gameStatus = () => {
 }
 
 render() {
+  const gameStatus = this.gameStatus();
   return (
     <View style={styles.container}>
       <Text style={styles.target}>{this.target}</Text>
@@ -76,6 +77,7 @@ render() {
           />
         ))}
       </View>
+      <Text>{gameStatus}</Text>
     </View>
   );
 }
