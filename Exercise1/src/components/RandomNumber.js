@@ -7,7 +7,7 @@ import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 class RandomNumber extends React.Component {
     static propTypes = {
       number: PropTypes.number.isRequired,
-      isSelected: PropTypes.boolean.isRequired,
+      isSelected: PropTypes.bool.isRequired,
     };
     handlePress = () => {
     //   console.log(this.props.number);
