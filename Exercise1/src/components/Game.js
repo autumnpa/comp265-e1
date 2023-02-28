@@ -15,7 +15,9 @@ class Game extends React.Component {
         return (
           <View style={styles.container}>
             <Text style={styles.target}>{this.target}</Text>
-            <Text>{this.randomNumbers}</Text>
+            {this.randomNumbers.map((randomNumber, index) =>
+              <Text key ={index}>{randomNumber}</Text>
+            )}
           </View>
         );
       }
