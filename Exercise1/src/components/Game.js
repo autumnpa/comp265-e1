@@ -138,7 +138,7 @@ render() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#ddd',
+    backgroundColor: '#BFACE2',
     flex: 1,
     paddingTop: 50,
   },
@@ -157,15 +157,19 @@ const styles = StyleSheet.create({
   },
 
   STATUS_PLAYING: {
-    backgroundColor: '#bbb',
+    backgroundColor: 'white',
   },
 
   STATUS_WON: {
-    backgroundColor: 'green',
+    backgroundColor: 'white',
+    color: '#54B435',
+    fontSize: 80,
   },
 
   STATUS_LOST: {
-    backgroundColor: 'red',
+    backgroundColor: 'white',
+    color: '#FF0032',
+    fontSize: 80,
   },
 
 });

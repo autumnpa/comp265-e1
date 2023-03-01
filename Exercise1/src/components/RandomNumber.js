@@ -43,11 +43,12 @@ class RandomNumber extends React.Component {
 const styles = StyleSheet.create({
 
   random: {
-    backgroundColor: '#999',
+    backgroundColor: 'white',
     width: 100,
     marginHorizontal: 20,
     marginVertical: 35,
     fontSize: 35,
+    color: '#3E54AC',
     textAlign: 'center',
   },
 
