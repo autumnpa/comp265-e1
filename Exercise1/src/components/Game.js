@@ -123,6 +123,7 @@ render() {
           />
         ))}
       </View>
+      {/* Button needs to reset and reinitialize the state, game status, timers, target number, etc */}
       <Button title="Play Again!" onPress={() => {}}/>
       <Text>{this.state.remainingSeconds}</Text>
     </View>
