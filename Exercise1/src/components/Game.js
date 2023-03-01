@@ -21,6 +21,9 @@ class Game extends React.Component {
       selectedIds: [],
       remainingSeconds: this.props.initialSeconds,
     };
+    // Game status instance property
+    gameStatus = 'PLAYING';
+    
     randomNumbers = Array.from({ length: this.props.randomNumberCount })
       .map(() => 1 + Math.floor(10 * Math.random()))
       target = this.randomNumbers.slice(0, this.props.randomNumberCount - 2)
@@ -58,16 +61,31 @@ class Game extends React.Component {
       }));
     };
 
+    // Cache
+    // Ask Arlin about this below line - deprecated
+    //componentWillUpdate(nextProps, nextState) {
+    UNSAFE_componentWillUpdate(nextProps, nextState) {
+    // Compute new game status if needed
+      if (nextState.selectedIds !== this.state.selectedIds || nextState.remainingSeconds === 0) {
+        this.gameStatus = this.calcGameStatus(nextState);
+      }
+    }
+
 // Game status - won - playing - lost
 // Status can be computed so doesn't need to be in the state
-gameStatus = () => {
-  const sumSelected = this.state.selectedIds.reduce((acc, curr) => {
+calcGameStatus = (nextState) => {
+  // console.log('calcGameStatus');
+  const sumSelected = nextState.selectedIds.reduce((acc, curr) => {
     return acc + this.randomNumbers[curr];
   }, 0);
   //   Shows right in the simulator rather than in the console of dev tools
   //   console.log(sumSelected);
   // console.warn(sumSelected);
 
+  //   If the timer runs out the target sum turns red and the game is lost
+  if (nextState.remainingSeconds === 0) {
+    return 'LOST';
+  }
   //   If statements to determine state of the game
   if (sumSelected < this.target) {
     return 'PLAYING';
@@ -76,10 +94,10 @@ gameStatus = () => {
   } if (sumSelected > this.target) {
     return 'LOST';
   }
-}
+};
 
 render() {
-  const gameStatus = this.gameStatus();
+  const gameStatus = this.gameStatus;
   return (
     <View style={styles.container}>
       <Text style={[styles.target, styles[`STATUS_${gameStatus}`]]}>{this.target}</Text>
@@ -103,6 +121,7 @@ render() {
   );
 }
 }
+
 
 const styles = StyleSheet.create({
   container: {
