@@ -11,6 +11,7 @@ class Game extends React.Component {
     static propTypes = {
       randomNumberCount: PropTypes.number.isRequired,
       initialSeconds: PropTypes.number.isRequired,
+      onPlayAgain: PropTypes.func.isRequired,
     };
     // UI Logic - Once a number is pressed the button should change so it cannot be pressed again - change the state - rerender the view
     // ^ Use the unique identifier (position) - key index for every random number
@@ -124,7 +125,7 @@ render() {
         ))}
       </View>
       {/* Button needs to reset and reinitialize the state, game status, timers, target number, etc */}
-      <Button title="Play Again!" onPress={() => {}}/>
+      <Button title="Play Again!" onPress={this.props.onPlayAgain}/>
       <Text>{this.state.remainingSeconds}</Text>
     </View>
   );

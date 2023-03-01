@@ -14,7 +14,9 @@ resetGame = () => {
 render() {
   return (
   // Add a gameId to make reseting the game with play again button easier
-    <Game key={this.state.gameId} randomNumberCount={6} initialSeconds={10} />
+    <Game key={this.state.gameId} 
+      onPlayAgain={this.resetGame}
+      randomNumberCount={6} initialSeconds={10} />
   );
 }
 }
