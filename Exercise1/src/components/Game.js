@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet } from 'react-native';
 
 import RandomNumber from './RandomNumber';
 
@@ -123,6 +123,7 @@ render() {
           />
         ))}
       </View>
+      <Button title="Play Again!" onPress={() => {}}/>
       <Text>{this.state.remainingSeconds}</Text>
     </View>
   );
