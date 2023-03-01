@@ -125,7 +125,10 @@ render() {
         ))}
       </View>
       {/* Button needs to reset and reinitialize the state, game status, timers, target number, etc */}
-      <Button title="Play Again!" onPress={this.props.onPlayAgain}/>
+      {/* Add play again button into a conditional to reset only when the game state becomes LOST */}
+      {this.gameStatus !== 'PLAYING' && (
+        <Button title="Play Again!" onPress={this.props.onPlayAgain}/>
+      )}
       <Text>{this.state.remainingSeconds}</Text>
     </View>
   );
