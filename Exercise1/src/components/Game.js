@@ -5,6 +5,8 @@ import { View, Text, StyleSheet } from 'react-native';
 
 import RandomNumber from './RandomNumber';
 
+import shuffle from 'lodash.shuffle';
+
 class Game extends React.Component {
     static propTypes = {
       randomNumberCount: PropTypes.number.isRequired,
@@ -29,27 +31,29 @@ class Game extends React.Component {
       target = this.randomNumbers.slice(0, this.props.randomNumberCount - 2)
         .reduce((acc,curr) => acc + curr, 0);
         // TODO: Shuffle the random numbers after testing is completed
+        // Import shuffle from Lodash
+        shuffledRandomNumbers = shuffle(this.randomNumbers);
 
-      // Create a function that fires every second
-      componentDidMount() {
-        this.intervalId = setInterval(() => {
+        // Create a function that fires every second
+        componentDidMount() {
+          this.intervalId = setInterval(() => {
           // Set the state
-          this.setState((prevState) => {
-            return { remainingSeconds: prevState.remainingSeconds - 1 };
-          }, () => {
+            this.setState((prevState) => {
+              return { remainingSeconds: prevState.remainingSeconds - 1 };
+            }, () => {
             // Set state is asynchronous - this needs to happen right after the set state operation is formed
-            if (this.state.remainingSeconds === 0) {
-              clearInterval(this.intervalId);
-            }
-          });
-        }, 1000);
-      }
+              if (this.state.remainingSeconds === 0) {
+                clearInterval(this.intervalId);
+              }
+            });
+          }, 1000);
+        }
      
-      componentWillUnmount() {
-        clearInterval(this.intervalId);
-      }
+        componentWillUnmount() {
+          clearInterval(this.intervalId);
+        }
 
-      // Function to check if the number is the array is selected
+        // Function to check if the number is the array is selected
      isNumberSelected = (numberIndex) => {
        return this.state.selectedIds.indexOf(numberIndex) >= 0;
      };
@@ -79,7 +83,7 @@ class Game extends React.Component {
 calcGameStatus = (nextState) => {
   // console.log('calcGameStatus');
   const sumSelected = nextState.selectedIds.reduce((acc, curr) => {
-    return acc + this.randomNumbers[curr];
+    return acc + this.shuffledRandomNumbers[curr];
   }, 0);
   //   Shows right in the simulator rather than in the console of dev tools
   //   console.log(sumSelected);
@@ -105,7 +109,7 @@ render() {
     <View style={styles.container}>
       <Text style={[styles.target, styles[`STATUS_${gameStatus}`]]}>{this.target}</Text>
       <View style={styles.randomContainer}>
-        {this.randomNumbers.map((randomNumber, index) => (
+        {this.shuffledRandomNumbers.map((randomNumber, index) => (
           //  With every number a property is passed in (boolean) to check if a number is selected or not
           //   Changed naming conventions to clarify logic
           // If number selected is true the button should be disabled until new page is loaded
