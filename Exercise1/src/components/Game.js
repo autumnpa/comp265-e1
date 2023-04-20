@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet, Pressable } from 'react-native';
 
 import RandomNumber from './RandomNumber';
 
@@ -126,8 +126,10 @@ class Game extends React.Component {
         </View>
         {/* Button needs to reset and reinitialize the state, game status, timers, target number, etc */}
         {/* Add play again button into a conditional to reset only when the game state becomes LOST */}
+        {/* Button component doesnt allow style prop */}
+        {/* NEW - Pressable component - use this to be able to style the button */}
         {this.gameStatus !== 'PLAYING' && (
-          <Button title="Play Again!" onPress={this.props.onPlayAgain} />
+          <Pressable title="Play Again!" onPress={this.props.onPlayAgain} style={styles.playAgainBtn} />
         )}
         <Text>{this.state.remainingSeconds}</Text>
       </View>
@@ -138,7 +140,7 @@ class Game extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#BFACE2',
+    backgroundColor: 'white',
     flex: 1,
     paddingTop: 50,
   },
@@ -147,7 +149,6 @@ const styles = StyleSheet.create({
     fontSize: 50,
     margin: 50,
     textAlign: 'center',
-    borderRadius: 6,
   },
 
   randomContainer: {
@@ -155,7 +156,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
-    borderRadius: 6,
   },
 
   STATUS_PLAYING: {
@@ -173,6 +173,15 @@ const styles = StyleSheet.create({
     color: '#FF0032',
     fontSize: 80,
   },
+
+  playAgainBtn: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    backgroundColor: 'grey',
+  }
 
 });
 
