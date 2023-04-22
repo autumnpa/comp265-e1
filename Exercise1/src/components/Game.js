@@ -128,9 +128,13 @@ class Game extends React.Component {
         {/* Add play again button into a conditional to reset only when the game state becomes LOST */}
         {/* Button component doesnt allow style prop */}
         {/* NEW - Pressable component - use this to be able to style the button */}
-        {this.gameStatus !== 'PLAYING' && (
-          <Pressable title="Play Again!" onPress={this.props.onPlayAgain} style={styles.playAgainBtn} />
-        )}
+        <View>
+          {this.gameStatus !== 'PLAYING' && (
+            <Pressable onPress={this.props.onPlayAgain} style={styles.tryAgainBtn}>
+              <Text style={styles.tryAgainText}>Try Again!</Text>
+            </Pressable>
+          )}
+        </View>
         <Text>{this.state.remainingSeconds}</Text>
       </View>
     );
@@ -174,13 +178,21 @@ const styles = StyleSheet.create({
     fontSize: 80,
   },
 
-  playAgainBtn: {
+  tryAgainBtn: {
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 12,
-    paddingHorizontal: 32,
+    paddingHorizontal: 14,
     borderRadius: 4,
-    backgroundColor: 'grey',
+    backgroundColor: 'white',
+  },
+
+  tryAgainText: {
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: '#202020',
   }
 
 });
